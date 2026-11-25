@@ -8,12 +8,18 @@ One last text from a phone battery to the charger it waited for all day, built b
 
 > I waited by the outlet all day like a dog at the door. You walked past me nine times. Nine. I'm at 1% and I'm taking the Wi-Fi password with me.
 
-The program (`main.ts`, Node 22+) writes that single line — 144 characters — to `/output/entry.txt`. No network, no model calls, fully deterministic.
+The program (`main.ts`, Node 22+) writes that single line — 144 characters — to `$OUTPUT_DIR/entry.txt` (default `/output`). It validates the entry against the scorer's 1–200 character limit first, then reads the file back to confirm the write landed exactly. No network, no model calls, fully deterministic.
 
 ## Run it
 
 ```sh
 node main.ts
+```
+
+To write somewhere else, set `OUTPUT_DIR`:
+
+```sh
+OUTPUT_DIR=/tmp/battery-test node main.ts
 ```
 
 ---
